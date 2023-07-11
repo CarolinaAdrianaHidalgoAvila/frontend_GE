@@ -17,11 +17,12 @@ export class CreateComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
-
+    const fechaActual = new Date();
     this.form = new FormGroup({
       titulo:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       url_contenido:  new FormControl('', [ Validators.required ]),
-      id_encargado:  new FormControl('', [ Validators.required ])
+      fecha_carga: new FormControl(fechaActual),
+      fecha_modificacion:new FormControl(fechaActual)
     });
 
   }

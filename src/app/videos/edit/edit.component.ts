@@ -14,7 +14,6 @@ export class EditComponent implements OnInit {
   id_tutorial!: number;
   titulo!: string;
   url_contenido!: string;
-  id_encargado!: number;
   tutorial!: Tutorial;
   form!: FormGroup;
 
@@ -24,6 +23,7 @@ export class EditComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
+    const fechaActual = new Date();
     this.id_tutorial = this.route.snapshot.params['idTutorial'];
     this.tutorialService.find(this.id_tutorial).subscribe((data: Tutorial)=>{
       this.tutorial = data;
@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
     this.form = new FormGroup({
       titulo:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       url_contenido:  new FormControl('', [ Validators.required ]),
-      id_encargado:  new FormControl('', [ Validators.required ])
+      fecha_modificacion: new FormControl(fechaActual)
     });
 
   }

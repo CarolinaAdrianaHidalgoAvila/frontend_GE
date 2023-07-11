@@ -6,15 +6,14 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
-  { path: 'rutas', redirectTo: 'rutas/index', pathMatch: 'full'},
-  { path: 'rutas/index', component: IndexComponent },
-  { path: 'rutas/create', component: CreateComponent },
-  { path: 'rutas/edit/:idRuta', component: EditComponent } 
-
+  { path: 'ruta', redirectTo: 'ruta/index', pathMatch: 'full'},
+  { path: 'ruta/index', component: IndexComponent },
+  { path: 'ruta/create', component: CreateComponent },
+  { path: 'ruta/edit/:idRuta', component: EditComponent } 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RutasRoutingModule { }
+export class RutaRoutingModule { }

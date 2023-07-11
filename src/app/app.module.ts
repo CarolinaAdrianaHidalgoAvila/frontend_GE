@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { VideosModule } from './videos/videos.module';
+import { RutaModule } from './ruta/ruta.module';
+import { PrincipalModule } from './principal/principal.module';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { KmlContenedorModule } from './kml-contenedor/kml-contenedor.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { VideosModule } from './videos/videos.module';
     BrowserModule,
     AppRoutingModule,
     VideosModule,
+    RutaModule,
+    PrincipalModule,
+    KmlContenedorModule,
     HttpClientModule,
+    GoogleMapsModule,
     NgbModule
   ],
   providers: [],

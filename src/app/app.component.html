@@ -1,9 +1,14 @@
-<div class="container" style="padding:20px;">
-	<h1 style="text-align:center;">
-		<a href="/videos/index"> EMSA GAMC</a>
-	</h1>
-	<hr>
-  <main>
-  <router-outlet></router-outlet>
-  </main>
-</div>
+<nav class="navbar">
+	<div class="logo">
+	  <img src="assets/imagenes/logo.png" alt="Logo">
+	</div>
+	<ul class="nav-links">
+	  <li><a href="/principal/principal">INICIO</a></li>
+	  <li><a href="/ruta/index">RUTAS</a></li>
+	  <li><a href="/kml-Contenedor/index">CONTENEDORES</a></li>
+	  <li><a href="/videos/index">TUTORIALES</a></li>
+	</ul>
+</nav>
+<main>
+	<router-outlet></router-outlet>
+</main>
