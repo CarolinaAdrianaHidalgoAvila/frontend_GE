@@ -1,1 +1,73 @@
-<p>edit works!</p>
+<div class="container">
+  
+    <div class="d-flex justify-content-between">
+      <h4>Editar Contenedor</h4>
+      <a href="#" routerLink="/contenedor/index" class="btn btn-primaryt">Atrás</a>
+    </div>
+
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="nombre_contenedor">Nombre Contenedor:</label>
+              <input
+                formControlName="nombre_contenedor"
+                [(ngModel)]="contenedor.nombre_contenedor"
+                id="nombre_contenedor"
+                type="text"
+                class="form-control">
+              <div *ngIf="f['nombre_contenedor'].touched && f['nombre_contenedor'].invalid" class="alert alert-danger">
+                  <div *ngIf="f['nombre_contenedor']?.errors?.['required'] ?? true">*Nombre es requerido.</div>
+                  <div *ngIf="f['nombre_contenedor']?.errors?.['pattern'] ?? true">*El nombre solo debe contener letras.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="latitud">Latitud:</label>
+              <input
+                formControlName="latitud"
+                [(ngModel)]="contenedor.latitud"
+                id="latitud"
+                type="text"
+                class="form-control">
+              <div *ngIf="f['latitud'].touched && f['latitud'].invalid" class="alert alert-danger">
+                  <div *ngIf="f['latitud']?.errors?.['required'] ?? true">*Latitud requerida.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6 ">
+            <label for="longitud">Longitud:</label>
+            <input
+              formControlName="longitud"
+              [(ngModel)]="contenedor.longitud"
+              id="longitud"
+              type="text"
+              class="form-control">
+            <div *ngIf="f['longitud'].touched && f['longitud'].invalid" class="alert alert-danger">
+                <div *ngIf="f['longitud']?.errors?.['required'] ?? true">*Longitud requerida.</div>
+            </div>
+          </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6 ">
+          <label for="latitud">Tipo:</label>
+          <input
+            formControlName="tipo"
+            [(ngModel)]="contenedor.tipo"
+            id="tipo"
+            type="text"
+            class="form-control">
+          <div *ngIf="f['tipo'].touched && f['tipo'].invalid" class="alert alert-danger">
+              <div *ngIf="f['tipo']?.errors?.['required'] ?? true">*Tipo requerida.</div>
+              <div *ngIf="f['tipo']?.errors?.['pattern'] ?? true">*Tipo solo acepta letras</div>
+          </div>
+        </div>
+    </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Editar</button>
+    </form>
+</div>

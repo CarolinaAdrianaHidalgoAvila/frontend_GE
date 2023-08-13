@@ -2,24 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ContenedorRoutingModule } from './contenedor-routing.module';
-import { IndexComponent } from './index/index.component';
-import { CreateComponent } from './create/create.component';
+import { IndexContenedorComponent } from './index/index.component';
 import { EditComponent } from './edit/edit.component';
-import { MapaComponent } from './mapa/mapa.component';
 import { MapComponent } from './map/map.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    IndexComponent,
-    CreateComponent,
+    IndexContenedorComponent,
     EditComponent,
-    MapaComponent,
     MapComponent
   ],
   imports: [
     CommonModule,
-    ContenedorRoutingModule
+    ContenedorRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ContenedorModule { }

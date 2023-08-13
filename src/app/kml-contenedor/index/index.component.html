@@ -1,29 +1,30 @@
 <section>
 
-    <div class="d-flex justify-content-between">
-      <h4>Lista archivos KML de contenedores</h4>
-      <input type="file" (change)="handleFileInput($event)" accept=".kml" />
-<button (click)="uploadFile()" [disabled]="!fileToUpload">Upload</button>
+  <div class="d-flex justify-content-between">
+    <h1>Lista archivos KML de contenedores</h1>
+    <input type="file" (change)="handleFileInput($event)" accept=".kml" />
+    <button (click)="uploadFile()" [disabled]="!fileToUpload">Subir Archivo</button>
 
-    </div>
+  </div>
 
-    <br>
-    
-    <table class="table ">
-      <tr>
-        <th>ID</th>
-        <th>Archivo KML</th>
-        <th>Creación</th>
-        <th width="220px">Action</th>
-      </tr>
-      <tr *ngFor="let kml of kmls">
-        <td>{{ kml.id }}</td>
-        <td>{{ kml.nombre_archivo}}</td>
-        <td>{{ kml.fecha_carga }}</td>
-        <td>
-          <a href="#" [routerLink]="['/contenedor/index', kml.id  ]" class="btn btn-primary">Ver</a>
-          <button type="button" (click)="deleteKML(kml.id)" class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-    </table>
- </section>
+  <br>
+
+  <table class="table ">
+    <tr>
+      <th>ID</th>
+      <th>Archivo KML</th>
+      <th>Creación</th>
+      <th width="420px">Action</th>
+    </tr>
+    <tr *ngFor="let kml of kmls">
+      <td>{{ kml.id }}</td>
+      <td>{{ kml.nombre_archivo}}</td>
+      <td>{{ kml.fecha_carga }}</td>
+      <td>
+        <button type="button" (click)="submit(kml.id)" class="btn btn-success">Extraer Datos</button>
+        <a [routerLink]="['/kml-Contenedor','index', kml.id, 'contenedor', 'index']" class="btn btn-primary">Ver</a>
+        <button type="button" (click)="deleteKML(kml.id)" class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+  </table>
+</section>

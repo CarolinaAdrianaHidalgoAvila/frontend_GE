@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { KmlContenedor  } from './kml-contenedor';
+import { Contenedor  } from '../contenedor/contenedor';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,15 @@ export class KmlContenedorService {
     .pipe(
       catchError(this.errorHandler)
     )
+  }
+  getUrlWithIdAndContenedor(idKmlContenedor: number): string {
+    return `${this.apiURL}${idKmlContenedor}/contenedor`;
+  }
+  createContenedor(idKmlContenedor: number, contenedor: Contenedor): Observable<Contenedor> {
+    const url = this.getUrlWithIdAndContenedor(idKmlContenedor);
+    return this.httpClient.post<Contenedor>(url, JSON.stringify(contenedor), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
   }
 }
