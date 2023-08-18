@@ -1,18 +1,17 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Map, tileLayer, marker, Marker } from 'leaflet';
 import { ContenedorService } from '../contenedor.service';
-import { switchMap } from 'rxjs/operators';
 import { Contenedor } from '../contenedor';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: 'app-maps',
+  templateUrl: './maps.component.html',
+  styleUrls: ['./maps.component.css']
 })
-export class MapComponent implements AfterViewInit {
-  id!: number;
+export class MapsComponent implements AfterViewInit {
   idKmlContenedor: number = 0;
+  contenedores: Contenedor[] = [];
 
   constructor(
     public contenedorService: ContenedorService,
@@ -20,7 +19,6 @@ export class MapComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.id = this.route.snapshot.params['idContenedor'];
     this.idKmlContenedor = this.route.snapshot.params['idKmlContenedor'];
 
     const map = new Map('map').setView([-17.3936114, -66.1568983], 13);
@@ -31,14 +29,17 @@ export class MapComponent implements AfterViewInit {
       maxZoom: 18
     }).addTo(map);
 
-    this.contenedorService.find(this.idKmlContenedor, this.id).subscribe(
-      (contenedor: Contenedor) => {
-        const { latitud, longitud, nombre_contenedor,tipo } = contenedor;
-        marker([latitud, longitud])
-          .addTo(map)
-          .bindPopup(nombre_contenedor + tipo)
-          .openPopup();
-        console.log('Marcador agregado:', nombre_contenedor,tipo);
+    this.contenedorService.getAll(this.idKmlContenedor).subscribe(
+      (contenedores: Contenedor[]) => {
+        this.contenedores = contenedores;
+        this.contenedores.forEach((contenedor: Contenedor) => {
+          const { latitud, longitud, nombre_contenedor, tipo } = contenedor;
+          marker([latitud, longitud])
+            .addTo(map)
+            .bindPopup(nombre_contenedor + tipo)
+            .openPopup();
+          console.log('Marcador agregado:', nombre_contenedor,tipo);
+        });
       },
       (error) => {
         console.error('Error al obtener los datos del marcador:', error);

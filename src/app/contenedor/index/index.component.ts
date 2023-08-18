@@ -10,14 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class IndexContenedorComponent implements OnInit {
   contenedores: Contenedor[] = [];
-  idKmlContenedor: number=0;
+  idKmlContenedor = Number(this.route.snapshot.paramMap.get('idKmlContenedor'));
 
   constructor(    
     private route: ActivatedRoute,
     public contenedorService: ContenedorService) { }
 
     ngOnInit(): void {
-      this.idKmlContenedor = Number(this.route.snapshot.paramMap.get('idKmlContenedor'));
+      //this.idKmlContenedor = Number(this.route.snapshot.paramMap.get('idKmlContenedor'));
       this.contenedorService.getAll(this.idKmlContenedor).subscribe(
         (data: Contenedor[]) => {
           this.contenedores = data;

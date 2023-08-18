@@ -6,13 +6,15 @@ import { IndexContenedorComponent } from './index/index.component';
 import { EditComponent } from './edit/edit.component';
 import { MapComponent } from './map/map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MapsComponent } from './maps/maps.component';
 
 
 @NgModule({
   declarations: [
     IndexContenedorComponent,
     EditComponent,
-    MapComponent
+    MapComponent,
+    MapsComponent
   ],
   imports: [
     CommonModule,

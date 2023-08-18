@@ -2,7 +2,8 @@
 
     <div class="d-flex justify-content-between">
       <h4>Lista Contenedores</h4>
-      <a routerLink="/contenedor/" class="btn btn-success">Ver todo mapa</a>
+      <a [routerLink]="['/kml-Contenedor','index', idKmlContenedor, 'contenedor', 'maps']" class="btn btn-success">Ver todo mapa</a>
+
     </div>
 
     <br>
@@ -15,7 +16,7 @@
         <th>Longitud</th>
         <th>Fecha Modificación</th>
         <th>Tipo</th>
-        <th width="220px">Action</th>
+        <th width="220px">Accion</th>
       </tr>
       <tr *ngFor="let contenedor of contenedores">
         <td>{{ contenedor.id }}</td>
@@ -25,6 +26,7 @@
         <td>{{ contenedor.fecha_modificacion }}</td>
         <td>{{ contenedor.tipo}}</td>
         <td>
+          <a [routerLink]="['/kml-Contenedor','index', contenedor.idKmlContenedor, 'contenedor', 'map',contenedor.id]" class="btn btn-primary">Ver Mapa</a>
           <a href="#" [routerLink]="['/kml-Contenedor','index', contenedor.idKmlContenedor, 'contenedor', 'edit', contenedor.id ]" class="btn btn-primary">Editar</a>
           <button type="button" (click)="deleteContenedor(contenedor.id)" class="btn btn-danger">Borrar</button>
         </td>
