@@ -1,1 +1,35 @@
-<p>index works!</p>
+<section>
+
+    <div class="d-flex justify-content-between">
+      <h4>Lista Contenedores</h4>
+      <a [routerLink]="['/kml-Contenedor','index', idKmlContenedor, 'contenedor', 'maps']" class="btn btn-success">Ver todo mapa</a>
+
+    </div>
+
+    <br>
+    
+    <table class="table ">
+      <tr>
+        <th>ID Contenedor</th>
+        <th>Nombre</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Fecha Modificación</th>
+        <th>Tipo</th>
+        <th width="220px">Accion</th>
+      </tr>
+      <tr *ngFor="let contenedor of contenedores">
+        <td>{{ contenedor.id }}</td>
+        <td>{{ contenedor.nombre_contenedor }}</td>
+        <td>{{ contenedor.latitud }}</td>
+        <td>{{ contenedor.longitud }}</td>
+        <td>{{ contenedor.fecha_modificacion }}</td>
+        <td>{{ contenedor.tipo}}</td>
+        <td>
+          <a [routerLink]="['/kml-Contenedor','index', contenedor.idKmlContenedor, 'contenedor', 'map',contenedor.id]" class="btn btn-primary">Ver Mapa</a>
+          <a href="#" [routerLink]="['/kml-Contenedor','index', contenedor.idKmlContenedor, 'contenedor', 'edit', contenedor.id ]" class="btn btn-primary">Editar</a>
+          <button type="button" (click)="deleteContenedor(contenedor.id)" class="btn btn-danger">Borrar</button>
+        </td>
+      </tr>
+    </table>
+ </section>
