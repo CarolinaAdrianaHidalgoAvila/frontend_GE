@@ -12,6 +12,7 @@ import { PrincipalModule } from './principal/principal.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { KmlContenedorModule } from './kml-contenedor/kml-contenedor.module';
 import { ContenedorModule } from './contenedor/contenedor.module';
+import { KmlRutaModule } from './kml-ruta/kml-ruta.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ContenedorModule } from './contenedor/contenedor.module';
     RutaModule,
     PrincipalModule,
     KmlContenedorModule,
+    KmlRutaModule,
     HttpClientModule,
     GoogleMapsModule,
     NgbModule,
