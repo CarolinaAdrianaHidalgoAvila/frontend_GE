@@ -2,22 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RutaRoutingModule } from './ruta-routing.module';
-import { IndexComponent } from './index/index.component';
-import { CreateComponent } from './create/create.component';
+import { IndexRutaComponent } from './index/index.component';
 import { EditComponent } from './edit/edit.component';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { MapComponent } from './map/map.component';
+import { MapsComponent } from './maps/maps.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    IndexComponent,
-    CreateComponent,
-    EditComponent
+    IndexRutaComponent,
+    EditComponent,
+    MapComponent,
+    MapsComponent
   ],
   imports: [
     CommonModule,
     RutaRoutingModule,
-    GoogleMapsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RutaModule { }

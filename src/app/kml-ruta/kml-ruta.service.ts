@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { KmlRuta } from './kml-ruta';
+import { Ruta  } from '../ruta/ruta';
+
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +56,15 @@ export class KmlRutaService {
     .pipe(
       catchError(this.errorHandler)
     )
+  }
+  getUrlWithIdAndRuta(idKmlRuta: number): string {
+    return `${this.apiURL}${idKmlRuta}/ruta`;
+  }
+  createRuta(idKmlRuta: number, ruta: Ruta): Observable<Ruta> {
+    const url = this.getUrlWithIdAndRuta(idKmlRuta);
+    return this.httpClient.post<Ruta>(url, JSON.stringify(ruta), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      );
   }
 }
