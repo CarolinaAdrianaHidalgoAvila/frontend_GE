@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KmlRutaService } from '../kml-ruta.service';
 import { KmlRuta } from '../kml-ruta';
 import { ActivatedRoute } from '@angular/router';
+import { Ruta } from '../../ruta/ruta';
 
 @Component({
   selector: 'app-index',
@@ -65,4 +66,28 @@ export class IndexComponent implements OnInit {
       );
     }
   }
+
+  submit(idKmlRuta: number) {
+    const newRuta: Ruta = {
+      id: 0,
+      codigo_carro:'',
+      nombre_ruta: '',
+      latitud_inicio:0,
+      longitud_inicio:0,
+      latitud_fin:0,
+      longitud_fin:0,
+      tiene_saltos: false,
+      fecha_modificacion:new Date(),
+      idKmlRuta:idKmlRuta
+    };
+
+    this.kmlRutaService.createRuta(idKmlRuta, newRuta).subscribe(
+        (res: any) => {
+            console.log('Datos del archivo KML procesados y guardados correctamente:', res);
+        },
+        (error) => {
+            console.error('Error al procesar datos del archivo KML:', error);
+        }
+    );
+}
 }

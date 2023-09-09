@@ -21,6 +21,7 @@
         <td>{{ kml.nombre_archivo}}</td>
         <td>{{ kml.fecha_carga }}</td>
         <td>
+          <button type="button" (click)="submit(kml.id)" class="btn btn-success">Extraer Datos</button>
           <a [routerLink]="['/kml-Ruta','index', kml.id, 'ruta', 'index']" class="btn btn-primary">Ver</a>
           <button type="button" (click)="deleteKML(kml.id)" class="btn btn-danger">Eliminar</button>
         </td>
