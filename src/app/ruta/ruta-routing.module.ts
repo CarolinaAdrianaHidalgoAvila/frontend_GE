@@ -7,6 +7,7 @@ import { MapComponent } from './map/map.component';
 import { MapsComponent } from './maps/maps.component';
 
 const routes: Routes = [
+  { path: 'kml-Ruta/index/:idKmlRuta/ruta', redirectTo: 'kml-Ruta/index/:idKmlRuta/ruta/index', pathMatch: 'full'},
   { path: 'kml-Ruta/index/:idKmlRuta/ruta/index', component: IndexRutaComponent },
   { path: 'kml-Ruta/index/:idKmlRuta/ruta/map/:idRuta', component: MapComponent },
   { path: 'kml-Ruta/index/:idKmlRuta/ruta/maps', component: MapsComponent },
