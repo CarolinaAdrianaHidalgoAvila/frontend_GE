@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Ruta } from './ruta';
+import { PuntoLinea } from './punto-linea';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,14 @@ getUrlWithIdAndRuta(idKmlRuta: number): string {
   getAll(idKmlRuta: number): Observable<Ruta[]> {
     const url = this.getUrlWithIdAndRuta(idKmlRuta);
     return this.httpClient.get<Ruta[]>(url)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+  getPuntosRuta(idKmlRuta: number, id: number): Observable<PuntoLinea[]> {
+    const urlId = this.getUrlWithIdAndRuta(idKmlRuta);
+    const url = `${urlId}/${id}/puntos`;
+    return this.httpClient.get<PuntoLinea[]>(url)
       .pipe(
         catchError(this.errorHandler)
       );
