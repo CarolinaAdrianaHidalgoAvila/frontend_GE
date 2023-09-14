@@ -12,11 +12,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CreateComponent implements OnInit {
 
   form!: FormGroup;
+  mensaje = 'Tutorial creado exitosamente.';
+  mostrarMensaje: boolean = false;
   constructor(
     public tutorialService: TutorialService,
     private router: Router
   ) { }
   ngOnInit(): void {
+    setTimeout(() => {
+      this.mostrarMensaje = false;
+    }, 22000);
     const fechaActual = new Date();
     this.form = new FormGroup({
       titulo:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),

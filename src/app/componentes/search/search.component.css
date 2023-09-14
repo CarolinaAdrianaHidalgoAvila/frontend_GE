@@ -1,0 +1,8 @@
+.input-group {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .custom-input {
+    width: 400px;
+  }
