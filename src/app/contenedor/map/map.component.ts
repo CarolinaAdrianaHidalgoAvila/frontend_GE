@@ -17,7 +17,11 @@ export class MapComponent implements AfterViewInit {
   constructor(
     public contenedorService: ContenedorService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.route.params.subscribe(params => {
+      const idKmlContenedor = params['idKmlContenedor'];
+    });
+  }
 
   ngAfterViewInit(): void {
     this.id = this.route.snapshot.params['idContenedor'];
@@ -36,8 +40,9 @@ export class MapComponent implements AfterViewInit {
         const { latitud, longitud, nombre_contenedor,tipo } = contenedor;
         marker([latitud, longitud])
           .addTo(map)
-          .bindPopup(nombre_contenedor + tipo)
+          .bindPopup("<strong>Nombre Contenedor:</strong> " + nombre_contenedor + "<br/><strong>Tipo:</strong> " + tipo)
           .openPopup();
+          map.setView([latitud, longitud], 15);
         console.log('Marcador agregado:', nombre_contenedor,tipo);
       },
       (error) => {

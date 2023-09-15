@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapsComponent } from './maps/maps.component';
 
+import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MapsComponent } from './maps/maps.component';
     CommonModule,
     ContenedorRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentesModule
   ]
 })
 export class ContenedorModule { }
