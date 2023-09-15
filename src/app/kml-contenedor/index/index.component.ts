@@ -3,6 +3,7 @@ import { KmlContenedorService } from '../kml-contenedor.service';
 import { KmlContenedor } from '../kml-contenedor';
 import { Contenedor } from '../../contenedor/contenedor';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,14 +16,21 @@ export class IndexComponent implements OnInit {
   kmls: KmlContenedor[] = [];
   fileToUpload: File | null = null;
   idKmlContenedor: number=0;
-  // constructor() { }
+  filteredArchivos: KmlContenedor[] = [];
+
+  mensaje = 'Los datos fueron extraidos correctamente.';
+  mostrarMensaje: boolean = false;
+  mensajeDuracion: number = 6000;
   constructor(
     public kmlContenedorService: KmlContenedorService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.kmlContenedorService.getAll().subscribe((data: KmlContenedor[])=>{
       this.kmls = data;
+      this.filteredArchivos = [...this.kmls];
+      this.filteredArchivos = data.sort((a, b) => a.id - b.id);
       console.log(this.kmls);
     })
   }
@@ -30,7 +38,9 @@ export class IndexComponent implements OnInit {
   deleteKML(id:number){
     this.kmlContenedorService.delete(id).subscribe(res => {
          this.kmls = this.kmls.filter(item => item.id !== id);
-         console.log('Kml eliminado satisfactoriamente!');
+         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/kml-Contenedor/index']);
+        });
     })
   }
   handleFileInput(event: any) {
@@ -60,7 +70,10 @@ export class IndexComponent implements OnInit {
       this.kmlContenedorService.create(kmlContenedor).subscribe(
         (response) => {
           console.log('File uploaded successfully.');
-          this.kmls.push(response); // Agregar el KmlContenedor al array de kmls
+          this.kmls.push(response); 
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/kml-Contenedor/index']);
+          });
         },
         (error) => {
           console.error('Error uploading file:', error);
@@ -70,6 +83,11 @@ export class IndexComponent implements OnInit {
   }
   
   submit(idKmlContenedor: number) {
+    this.mostrarMensaje = true;
+    this.mensaje = 'Datos del archivo KML procesados y guardados correctamente.';
+    setTimeout(() => {
+      this.mostrarMensaje = false;
+    }, this.mensajeDuracion);
     const newContenedor: Contenedor = {
         id: 0,
         nombre_contenedor: 'Nuevo Contenedor',
@@ -88,5 +106,17 @@ export class IndexComponent implements OnInit {
             console.error('Error al procesar datos del archivo KML:', error);
         }
     );
+}
+
+filter(filterValue: any) {
+  console.log('filterValue:', filterValue);
+  if (!filterValue) {
+    this.filteredArchivos = [...this.kmls];
+  } else {
+    this.filteredArchivos = this.kmls.filter(kml =>
+      kml.id.toString().includes(filterValue) ||
+      kml.nombre_archivo.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  }
 }
 }

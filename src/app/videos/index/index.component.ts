@@ -29,6 +29,7 @@ export class IndexComponent implements OnInit {
     })
   }
   filter(filterValue: any) {
+    console.log('filterValue:', filterValue);
     if (!filterValue) {
       // Si el filtro está vacío, restaura la lista completa de videos
       this.filteredVideos = [...this.videos];

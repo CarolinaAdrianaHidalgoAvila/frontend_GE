@@ -7,21 +7,19 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MessageComponent } from '../componentes/message/message.component';
-import { SearchComponent } from '../componentes/search/search.component';
+import { ComponentesModule } from '../componentes/componentes.module';
 @NgModule({
   declarations: [
     IndexComponent,
     CreateComponent,
-    EditComponent,
-    MessageComponent,
-    SearchComponent
+    EditComponent
   ],
   imports: [
     CommonModule,
     VideosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentesModule
     ]
 })
 export class VideosModule { }
