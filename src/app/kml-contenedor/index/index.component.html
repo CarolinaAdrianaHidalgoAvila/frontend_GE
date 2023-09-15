@@ -1,30 +1,34 @@
 <section>
-
   <div class="d-flex justify-content-between">
-    <h1>Lista archivos KML de contenedores</h1>
-    <input type="file" (change)="handleFileInput($event)" accept=".kml" />
-    <button (click)="uploadFile()" [disabled]="!fileToUpload">Subir Archivo</button>
+    <h1>Archivos KML de contenedores</h1>
+  </div>
+  <br>
+  <div class="d-flex align-items-center justify-content-between mx-3">
+    <div class="ml-2"> <!-- Agrega margen a la izquierda -->
+      <app-search (applyFilter)="filter($event)"></app-search>
+    </div>
+    <input type="file" (change)="handleFileInput($event)" accept=".kml"/>
+    <button (click)="uploadFile()" [disabled]="!fileToUpload" class="custom-button">Subir Archivo</button>
 
   </div>
-
   <br>
-
   <table class="table ">
     <tr>
       <th>ID</th>
       <th>Archivo KML</th>
-      <th>Creación</th>
-      <th width="420px">Action</th>
+      <th>Fecha Creación</th>
+      <th width="420px">Acción</th>
     </tr>
-    <tr *ngFor="let kml of kmls">
+    <tr *ngFor="let kml of filteredArchivos">
       <td>{{ kml.id }}</td>
       <td>{{ kml.nombre_archivo}}</td>
-      <td>{{ kml.fecha_carga }}</td>
+      <td>{{ kml.fecha_carga | date:'yyyy-MM-dd' }}</td>
       <td>
-        <button type="button" (click)="submit(kml.id)" class="btn btn-success">Extraer Datos</button>
+        <button type="button" (click)="submit(kml.id)" class="btn btn-success" (click)="mostrarMensaje">Extraer Datos</button>
         <a [routerLink]="['/kml-Contenedor','index', kml.id, 'contenedor', 'index']" class="btn btn-primary">Ver</a>
         <button type="button" (click)="deleteKML(kml.id)" class="btn btn-danger">Eliminar</button>
       </td>
     </tr>
   </table>
 </section>
+<app-message [message]="mensaje" *ngIf="mostrarMensaje"></app-message>

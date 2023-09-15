@@ -7,6 +7,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ComponentesModule } from '../componentes/componentes.module';
 @NgModule({
   declarations: [
     IndexComponent,
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     VideosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    ComponentesModule
+    ]
 })
 export class VideosModule { }

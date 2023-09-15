@@ -10,13 +10,14 @@ import { Tutorial } from '../tutorial';
 })
 export class IndexComponent implements OnInit {
   videos: Tutorial[] = [];
-
-  // constructor() { }
+  filteredVideos: Tutorial[] = [];
   constructor(public tutorialService: TutorialService) { }
 
   ngOnInit(): void {
     this.tutorialService.getAll().subscribe((data: Tutorial[])=>{
       this.videos = data;
+      this.filteredVideos = [...this.videos];
+      this.filteredVideos = data.sort((a, b) => a.id - b.id);
       console.log(this.videos);
     })
   }
@@ -27,5 +28,17 @@ export class IndexComponent implements OnInit {
          console.log('Tutorial deleted successfully!');
     })
   }
-
+  filter(filterValue: any) {
+    console.log('filterValue:', filterValue);
+    if (!filterValue) {
+      // Si el filtro está vacío, restaura la lista completa de videos
+      this.filteredVideos = [...this.videos];
+    } else {
+      // Filtra los videos por id, nombre o fecha
+      this.filteredVideos = this.videos.filter(video =>
+        video.id.toString().includes(filterValue) ||
+        video.titulo.toLowerCase().includes(filterValue.toLowerCase())
+      );
+    }
+  }
 }

@@ -40,7 +40,7 @@
           </div>
           <br>
           <br>
-          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">SUBIR</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="mostrarMensaje = true">SUBIR</button>
       </form>
   </div>
-  
+  <app-message [message]="mensaje" *ngIf="mostrarMensaje"></app-message>
