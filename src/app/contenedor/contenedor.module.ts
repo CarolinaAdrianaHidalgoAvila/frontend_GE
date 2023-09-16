@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MapsComponent } from './maps/maps.component';
 
 import { ComponentesModule } from '../componentes/componentes.module';
+//import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+//import 'leaflet/dist/leaflet.css'; // Importa los estilos de Leaflet
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ComponentesModule } from '../componentes/componentes.module';
     ContenedorRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ComponentesModule
+    ComponentesModule,
+    //LeafletModule,
   ]
 })
 export class ContenedorModule { }
