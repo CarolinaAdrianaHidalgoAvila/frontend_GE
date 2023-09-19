@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class IndexRutaComponent implements OnInit {
   rutas: Ruta[] = [];
   idKmlRuta = Number(this.route.snapshot.paramMap.get('idKmlRuta'));
-
+  filteredRuta: Ruta[] = [];
   constructor(    
     private route: ActivatedRoute,
     public rutaService: RutaService) { }
@@ -20,6 +20,8 @@ export class IndexRutaComponent implements OnInit {
       this.rutaService.getAll(this.idKmlRuta).subscribe(
         (data: Ruta[]) => {
           this.rutas = data;
+          this. filteredRuta = [...this.rutas];
+          this. filteredRuta = data.sort((a, b) => a.id - b.id);
           console.log(this.rutas);
         },
         error => {
@@ -33,5 +35,18 @@ export class IndexRutaComponent implements OnInit {
         this.rutas = this.rutas.filter(item => item.id !== idRuta);
         console.log('Ruta eliminada!');
       });
+    }
+    filter(filterValue: any) {
+      console.log('filterValue:', filterValue);
+      if (!filterValue) {
+        this.filteredRuta = [...this.rutas];
+      } else {
+        this.filteredRuta = this.rutas.filter(ruta =>
+          ruta.id.toString().includes(filterValue) ||
+          ruta.nombre_ruta.toLowerCase().includes(filterValue.toLowerCase()) ||
+          ruta.codigo_carro.toLowerCase().includes(filterValue.toLowerCase())||
+          (ruta.tiene_saltos ? 'Sí' : 'No').toLowerCase().includes(filterValue.toLowerCase())
+        );
+      }
     }
   }

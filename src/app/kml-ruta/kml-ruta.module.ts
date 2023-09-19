@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { KmlRutaRoutingModule } from './kml-ruta-routing.module';
 import { IndexComponent } from './index/index.component';
+import { ComponentesModule } from '../componentes/componentes.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { IndexComponent } from './index/index.component';
   ],
   imports: [
     CommonModule,
-    KmlRutaRoutingModule
+    KmlRutaRoutingModule,
+    ComponentesModule
   ]
 })
 export class KmlRutaModule { }

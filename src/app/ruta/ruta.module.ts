@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { MapsComponent } from './maps/maps.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RutaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentesModule
   ]
 })
 export class RutaModule { }

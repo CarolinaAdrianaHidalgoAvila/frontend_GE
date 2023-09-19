@@ -1,0 +1,11 @@
+h1{
+    font-weight: 700;
+
+}
+section{
+    padding-left: 4%;
+    padding-right: 0.3%;
+}
+  .custom-button {
+    border-radius: 8px;
+  }
