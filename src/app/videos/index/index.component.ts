@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { TutorialService } from '../tutorial.service';
 import { Tutorial } from '../tutorial';
 
@@ -11,7 +11,8 @@ import { Tutorial } from '../tutorial';
 export class IndexComponent implements OnInit {
   videos: Tutorial[] = [];
   filteredVideos: Tutorial[] = [];
-  constructor(public tutorialService: TutorialService) { }
+  constructor(public tutorialService: TutorialService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.tutorialService.getAll().subscribe((data: Tutorial[])=>{
@@ -26,6 +27,7 @@ export class IndexComponent implements OnInit {
     this.tutorialService.delete(id_tutorial).subscribe(res => {
          this.videos = this.videos.filter(item => item.id !== id_tutorial);
          console.log('Tutorial deleted successfully!');
+         window.location.reload();
     })
   }
   filter(filterValue: any) {

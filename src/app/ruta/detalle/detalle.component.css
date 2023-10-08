@@ -1,0 +1,28 @@
+h1{
+    font-weight: 700;
+
+}
+.bold-label {
+    font-weight: bold;
+}
+
+.form-field {
+    width: 30%; /* Puedes ajustar este valor según tus necesidades */
+    margin-right: 10px; /* Espaciado entre los campos */
+}
+.body{
+    padding-left: 5%;
+    padding-right: 0.3%;
+}
+.frecuencia-container {
+    display: flex; /* Utiliza un contenedor flexible */
+    flex-wrap: nowrap; /* Evita el ajuste automático de elementos en varias filas */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+  }
+.form-check {
+    margin-right: 20px;
+    margin-top: 50px; 
+}
+h3{
+    font-weight: bold;
+}

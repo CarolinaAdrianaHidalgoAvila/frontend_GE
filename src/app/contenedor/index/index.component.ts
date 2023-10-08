@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContenedorService } from '../contenedor.service';
 import { Contenedor } from '../contenedor';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -35,7 +36,7 @@ export class IndexContenedorComponent implements OnInit {
     deleteContenedor(idContenedor: number): void {
       this.contenedorService.delete(this.idKmlContenedor, idContenedor).subscribe(res => {
         this.contenedores = this.contenedores.filter(item => item.id !== idContenedor);
-        console.log('Contenedor deleted successfully!');
+        window.location.reload();
       });
     }
     filter(filterValue: any) {
@@ -45,7 +46,7 @@ export class IndexContenedorComponent implements OnInit {
       } else {
         this.filteredContenedores = this.contenedores.filter(contenedor =>
           contenedor.id.toString().includes(filterValue) ||
-          contenedor.nombre_contenedor.toLowerCase().includes(filterValue.toLowerCase()) ||
+          contenedor.nombre_contenedor.includes(filterValue.toLowerCase()) ||
           contenedor.tipo.toLowerCase().includes(filterValue.toLowerCase())
         );
       }

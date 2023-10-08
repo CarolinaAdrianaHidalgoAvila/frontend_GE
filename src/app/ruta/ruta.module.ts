@@ -9,13 +9,15 @@ import { MapsComponent } from './maps/maps.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ComponentesModule } from '../componentes/componentes.module';
+import { DetalleComponent } from './detalle/detalle.component';
 
 @NgModule({
   declarations: [
     IndexRutaComponent,
     EditComponent,
     MapComponent,
-    MapsComponent
+    MapsComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,

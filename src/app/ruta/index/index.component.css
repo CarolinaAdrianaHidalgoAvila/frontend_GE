@@ -6,3 +6,8 @@ section{
     padding-left: 4%;
     padding-right: 0.3%;
 }
+
+  .spaced-table td {
+    padding-bottom: 20px; 
+  }
+  
