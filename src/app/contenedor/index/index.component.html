@@ -1,13 +1,18 @@
 <section>
 
-    <div class="d-flex justify-content-between">
-      <h4>Lista Contenedores</h4>
-      <a [routerLink]="['/kml-Contenedor','index', idKmlContenedor, 'contenedor', 'maps']" class="btn btn-success">Ver todo mapa</a>
-
+  <div class="d-flex justify-content-between">
+    <h1>Contenedores</h1>
+    <a href="#" routerLink="/kml-Contenedor/index" class="btn btn-primaryt">Atrás</a>
+  </div>
+  <br>
+  <div class="d-flex align-items-center justify-content-between mx-3">
+    <div class="ml-2"> <!-- Agrega margen a la izquierda -->
+      <app-search (applyFilter)="filter($event)"></app-search>
     </div>
-
-    <br>
-    
+    <a [routerLink]="['/kml-Contenedor','index', idKmlContenedor, 'contenedor', 'maps']" class="btn btn-success">Ver todo mapa</a>
+  </div>
+  
+  <br>
     <table class="table ">
       <tr>
         <th>ID Contenedor</th>
@@ -16,14 +21,14 @@
         <th>Longitud</th>
         <th>Fecha Modificación</th>
         <th>Tipo</th>
-        <th width="220px">Accion</th>
+        <th width="220px">Acción</th>
       </tr>
-      <tr *ngFor="let contenedor of contenedores">
+      <tr *ngFor="let contenedor of filteredContenedores">
         <td>{{ contenedor.id }}</td>
         <td>{{ contenedor.nombre_contenedor }}</td>
         <td>{{ contenedor.latitud }}</td>
         <td>{{ contenedor.longitud }}</td>
-        <td>{{ contenedor.fecha_modificacion }}</td>
+        <td>{{ contenedor.fecha_modificacion | date:'yyyy-MM-dd'}}</td>
         <td>{{ contenedor.tipo}}</td>
         <td>
           <a [routerLink]="['/kml-Contenedor','index', contenedor.idKmlContenedor, 'contenedor', 'map',contenedor.id]" class="btn btn-primary">Ver Mapa</a>

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndexRutaComponent } from './index.component';
+import { DetalleComponent } from './detalle.component';
 
-describe('IndexRutaComponent', () => {
-  let component: IndexRutaComponent;
-  let fixture: ComponentFixture<IndexRutaComponent>;
+describe('DetalleComponent', () => {
+  let component: DetalleComponent;
+  let fixture: ComponentFixture<DetalleComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [IndexRutaComponent]
+      declarations: [DetalleComponent]
     });
-    fixture = TestBed.createComponent(IndexRutaComponent);
+    fixture = TestBed.createComponent(DetalleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

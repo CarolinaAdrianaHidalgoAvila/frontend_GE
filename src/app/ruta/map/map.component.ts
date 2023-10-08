@@ -60,13 +60,13 @@ export class MapComponent implements AfterViewInit {
         // Crear marcador de inicio
         const inicioMarker = marker([latitud_inicio, longitud_inicio])
           .addTo(this.map)
-          .bindPopup(nombre_ruta + ' ' + codigo_carro + ' ' + 'INICIO')
+          .bindPopup("<strong>Nombre Ruta:</strong> " +nombre_ruta + "<br/><strong>Codigo Carro:</strong> " + codigo_carro + "<br/><strong>Punto Inicio</strong> ")
           .openPopup();
     
         // Crear marcador de fin
         const finMarker = marker([latitud_fin, longitud_fin])
           .addTo(this.map)
-          .bindPopup(nombre_ruta + ' ' + codigo_carro + ' ' + 'FIN')
+          .bindPopup("<strong>Nombre Ruta:</strong> " +nombre_ruta + "<br/><strong>Codigo Carro:</strong> " + codigo_carro + "<br/><strong>Punto Final</strong> ")
           .openPopup();
       },
       (error) => {
