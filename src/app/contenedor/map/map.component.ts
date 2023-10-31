@@ -1,9 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit,ViewChild, ElementRef } from '@angular/core';
 import { Map, tileLayer, marker, Marker } from 'leaflet';
 import { ContenedorService } from '../contenedor.service';
 import { switchMap } from 'rxjs/operators';
 import { Contenedor } from '../contenedor';
 import { ActivatedRoute } from '@angular/router';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-map',
@@ -13,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MapComponent implements AfterViewInit {
   id!: number;
   idKmlContenedor: number = 0;
-
+  @ViewChild('map') mapElement!: ElementRef;
   constructor(
     public contenedorService: ContenedorService,
     private route: ActivatedRoute
@@ -49,5 +51,6 @@ export class MapComponent implements AfterViewInit {
         console.error('Error al obtener los datos del marcador:', error);
       }
     );
+    
   }
 }

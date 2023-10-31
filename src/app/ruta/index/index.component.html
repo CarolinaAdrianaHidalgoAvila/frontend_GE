@@ -9,6 +9,7 @@
     <div class="ml-2"> <!-- Agrega margen a la izquierda -->
       <app-search (applyFilter)="filter($event)"></app-search>
     </div>
+    <app-export  [tableData]="filteredRuta"></app-export>
     <input type="file" (change)="handleFileInput($event)" accept=".xlsx"/>
     <button (click)="uploadFile()" [disabled]="!fileToUpload" class="custom-button">Subir Archivo</button>
   </div>
@@ -39,7 +40,6 @@
       <td>
         <a [routerLink]="['/kml-Ruta','index', ruta.idKmlRuta, 'ruta', 'map',ruta.id]" class="btn btn-primary">Ver Mapa</a>
         <a [routerLink]="['/kml-Ruta','index', ruta.idKmlRuta, 'ruta', ruta.id,'detalle' ]" class="btn btn-primary">Detalle</a>
-        <a href="#" [routerLink]="['/kml-Ruta','index', ruta.idKmlRuta, 'ruta', 'edit', ruta.id ]" class="btn btn-primary">Editar</a>
         <button type="button" (click)="deleteRuta(ruta.id)" class="btn btn-danger">Borrar</button>
       </td>
     </tr>
