@@ -8,11 +8,13 @@
       <div class="ml-2"> <!-- Agrega margen a la izquierda -->
         <app-search (applyFilter)="filter($event)"></app-search>
       </div>
+      <app-export  [tableData]="filteredVideos"></app-export>
       <a routerLink="/videos/create" class="btn btn-success">CARGAR NUEVO</a>
     </div>
     
     <br>
     <table class="table ">
+      
       <tr>
         <th>ID Tutorial</th>
         <th>Título</th>

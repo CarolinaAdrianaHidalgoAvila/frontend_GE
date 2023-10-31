@@ -9,6 +9,7 @@
     <div class="ml-2"> <!-- Agrega margen a la izquierda -->
       <app-search (applyFilter)="filter($event)"></app-search>
     </div>
+    <app-export  [tableData]="filteredContenedores"></app-export>
     <a [routerLink]="['/kml-Contenedor','index', idKmlContenedor, 'contenedor', 'maps']" class="btn btn-success">Ver todo mapa</a>
   </div>
   

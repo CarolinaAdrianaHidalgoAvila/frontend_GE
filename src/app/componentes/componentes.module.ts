@@ -4,11 +4,14 @@ import { MessageComponent } from './message/message.component';
 import { SearchComponent } from './search/search.component';
 
 import { FormsModule } from '@angular/forms';
+import { ExportComponent } from './export/export.component';
+
 
 @NgModule({
   declarations: [
     MessageComponent,
-    SearchComponent
+    SearchComponent,
+    ExportComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     MessageComponent,
-    SearchComponent
+    SearchComponent,
+    ExportComponent
   ]
 })
 export class ComponentesModule { }
