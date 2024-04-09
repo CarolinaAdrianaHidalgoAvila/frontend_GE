@@ -19,3 +19,7 @@
     h1 {
         margin-top: auto;
       }
+      .card .carro {
+        display: block; 
+        margin-top: 25%; 
+      }
