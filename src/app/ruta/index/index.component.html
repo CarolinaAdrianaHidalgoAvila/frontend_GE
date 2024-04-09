@@ -1,0 +1,47 @@
+<section>
+
+  <div class="d-flex justify-content-between">
+    <h1>Rutas</h1>
+    <a href="#" routerLink="/kml-Ruta/index" class="btn btn-primaryt">Atrás</a>
+  </div>
+  <br>
+  <div class="d-flex align-items-center justify-content-between mx-3">
+    <div class="ml-2"> <!-- Agrega margen a la izquierda -->
+      <app-search (applyFilter)="filter($event)"></app-search>
+    </div>
+    <app-export  [tableData]="filteredRuta"></app-export>
+    <input type="file" (change)="handleFileInput($event)" accept=".xlsx"/>
+    <button (click)="uploadFile()" [disabled]="!fileToUpload" class="custom-button">Subir Archivo</button>
+  </div>
+  <br>
+  
+  <table class="table spaced-table">
+    <tr>
+      <th>ID Ruta</th>
+      <th>Codigo Carro</th>
+      <th>Nombre Ruta</th>
+      <th>Punto de Inicio</th>
+      <th>Punto de Fin</th>
+      <th>Tiene Saltos</th>
+      <th>Fecha Modificación</th>
+      <th width="290px">Acción</th>
+    </tr>
+    <tr *ngFor="let ruta of filteredRuta">
+      <td>{{ ruta.id }}</td>
+      <td>{{ ruta.codigo_carro }}</td>
+      <td>{{ ruta.nombre_ruta }}</td>
+      <td>{{ ruta.latitud_inicio }}, {{ ruta.longitud_inicio }}</td>
+      <td>{{ ruta.latitud_fin }}, {{ ruta.longitud_fin }}</td>
+      <td>
+        <ng-container *ngIf="ruta.tiene_saltos; else no">{{ 'Sí' }}</ng-container>
+        <ng-template #no>{{ 'No' }}</ng-template>
+      </td>
+      <td>{{ ruta.fecha_modificacion | date:'yyyy-MM-dd'}}</td>
+      <td>
+        <a [routerLink]="['/kml-Ruta','index', ruta.idKmlRuta, 'ruta', 'map',ruta.id]" class="btn btn-primary">Ver Mapa</a>
+        <a [routerLink]="['/kml-Ruta','index', ruta.idKmlRuta, 'ruta', ruta.id,'detalle' ]" class="btn btn-primary">Detalle</a>
+        <button type="button" (click)="deleteRuta(ruta.id)" class="btn btn-danger">Borrar</button>
+      </td>
+    </tr>
+  </table>
+</section>

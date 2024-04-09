@@ -1,0 +1,74 @@
+<div class="body">
+<div class="d-flex justify-content-between">
+  <h1>Detalle Ruta</h1>
+ 
+  <a href="#" [routerLink]="['/kml-Ruta/', 'index', idKmlRuta, 'ruta', 'index' ]" class="btn btn-primaryt">Atrás</a>
+</div>
+
+<div *ngIf="detalleRuta">
+  <form [formGroup]="detalleForm">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="codigo_vehiculo" class="bold-label">Código Vehículo</label>
+          <input type="text" id="codigo_vehiculo" formControlName="codigo_vehiculo" class="form-control form-field">
+        </div>
+
+        <div class="form-group">
+          <label for="nombre_ruta" class="bold-label">Nombre Ruta</label>
+          <input type="text" id="nombre_ruta" formControlName="nombre_ruta" class="form-control form-field">
+        </div>
+
+        <div class="form-group">
+          <label for="distrito" class="bold-label">Distrito</label>
+          <input type="text" id="distrito" formControlName="distrito" class="form-control form-field">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="hora_inicio" class="bold-label">Hora Inicio</label>
+          <input type="text" id="hora_inicio" formControlName="hora_inicio" class="form-control form-field">
+        </div>
+
+        <div class="form-group">
+          <label for="hora_fin" class="bold-label">Hora Fin</label>
+          <input type="text" id="hora_fin" formControlName="hora_fin" class="form-control form-field">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="distancia" class="bold-label">Distancia</label>
+          <input type="text" id="distancia" formControlName="distancia" class="form-control form-field">
+        </div>
+
+        <div class="form-group">
+          <label for="peso" class="bold-label">Peso</label>
+          <input type="text" id="peso" formControlName="peso" class="form-control form-field">
+        </div>
+
+        <div class="form-group">
+          <label for="observacion" class="bold-label">Observación</label>
+          <input type="text" id="observacion" formControlName="observacion" class="form-control form-field">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+<br>
+<div class="frecuencia-container">
+  <h3>Frecuencia de recolección</h3>
+  <div class="form-check" *ngFor="let frecuencia of frecuencias">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      [(ngModel)]="frecuencia.estado"
+      (change)="onCheckboxChange(frecuencia)"
+    />
+    <label class="form-check-label">{{ frecuencia.dia }}</label>
+  </div>
+</div>
+
+</div>

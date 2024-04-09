@@ -1,12 +1,11 @@
-<div class="container">
-  
+<div class="formulario">
     <div class="d-flex justify-content-between">
-      <h4>Edit tutorial</h4>
-      <a href="#" routerLink="/videos/index" class="btn btn-primaryt">Back</a>
+      <h2>Editar Tutoriales</h2>
+      <a href="#" routerLink="/videos/index" class="btn btn-primaryt">Atrás</a>
     </div>
-
-    <hr>
-
+  
+    <hr/>
+    
     <form [formGroup]="form" (ngSubmit)="submit()">
 
 
@@ -16,16 +15,17 @@
               <input
                 formControlName="titulo"
                 [(ngModel)]="tutorial.titulo"
-                id="name"
+                id="titulo"
                 type="text"
                 class="form-control">
                 <div *ngIf="f['titulo'].touched && f['titulo'].invalid" class="alert alert-danger">
-                    <div *ngIf="f['titulo']?.errors?.['required'] ?? true">*Name is required.</div>
-                    <div *ngIf="f['titulo']?.errors?.['pattern'] ?? true">*The name must only contain letters.</div>
+                    <div *ngIf="f['titulo']?.errors?.['required'] ?? true">*Titulo es requerido.</div>
+                    <div *ngIf="f['titulo']?.errors?.['pattern'] ?? true">*El titulo solo debe contener letras.</div>
                 </div>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="form-group row">
             <div class="col-md-6 ">
               <label for="url_contenido">URL Contenido:</label>
@@ -36,27 +36,14 @@
                 type="text"
                 class="form-control">
                 <div *ngIf="f['url_contenido'].touched && f['url_contenido'].invalid" class="alert alert-danger">
-                    <div *ngIf="f['url_contenido']?.errors?.['required'] ?? true">*url_contenido is required.</div>
+                    <div *ngIf="f['url_contenido']?.errors?.['required'] ?? true">*url_contenido es requerido.</div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group row">
-            <div class="col-md-6 ">
-              <label for="id_encargado">Phone:</label>
-              <input
-                [(ngModel)]="tutorial.id_encargado"
-                formControlName="id_encargado"
-                id="id_encargado"
-                type="text"
-                class="form-control">
-                <div *ngIf="f['id_encargado'].touched && f['id_encargado'].invalid" class="alert alert-danger">
-                    <div *ngIf="f['id_encargado']?.errors?.['required'] ?? true">*id_encargado is required.</div>
-                </div>
-            </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        <br>
+  <br>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="mostrarMensaje = true">Actualizar</button>
     </form>
 </div>
 
+<app-message [message]="mensaje" *ngIf="mostrarMensaje"></app-message>

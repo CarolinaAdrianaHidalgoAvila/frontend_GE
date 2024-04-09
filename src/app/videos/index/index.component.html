@@ -1,28 +1,37 @@
 <section>
 
     <div class="d-flex justify-content-between">
-      <h4>Lista videos</h4>
-      <a routerLink="/videos/create" class="btn btn-success">Create New video</a>
+      <h1>Tutoriales</h1>
     </div>
-
     <br>
+    <div class="d-flex align-items-center justify-content-between mx-3">
+      <div class="ml-2"> <!-- Agrega margen a la izquierda -->
+        <app-search (applyFilter)="filter($event)"></app-search>
+      </div>
+      <app-export  [tableData]="filteredVideos"></app-export>
+      <a routerLink="/videos/create" class="btn btn-success">CARGAR NUEVO</a>
+    </div>
     
+    <br>
     <table class="table ">
+      
       <tr>
         <th>ID Tutorial</th>
-        <th>Titulo</th>
-        <th>url contenido</th>
-        <th>ID encargado</th>
-        <th width="220px">Action</th>
+        <th>Título</th>
+        <th>Url contenido</th>
+        <th>Fecha Carga</th>
+        <th>Fecha Modificación</th>
+        <th width="220px">Acción</th>
       </tr>
-      <tr *ngFor="let video of videos">
+      <tr *ngFor="let video of filteredVideos">
         <td>{{ video.id}}</td>
         <td>{{ video.titulo }}</td>
         <td>{{ video.url_contenido }}</td>
-        <td>{{ video.id_encargado }}</td>
+        <td>{{ video.fecha_carga | date:'yyyy-MM-dd' }}</td>
+        <td>{{ video.fecha_modificacion | date:'yyyy-MM-dd' }}</td>
         <td>
-          <a href="#" [routerLink]="['/videos/', 'edit', video.id  ]" class="btn btn-primary">Edit</a>
-          <button type="button" (click)="deleteTutorial(video.id)" class="btn btn-danger">Delete</button>
+          <a href="#" [routerLink]="['/videos/', 'edit', video.id  ]" class="btn btn-primary">Editar</a>
+          <button type="button" (click)="deleteTutorial(video.id)" class="btn btn-danger">Eliminar</button>
         </td>
       </tr>
     </table>
